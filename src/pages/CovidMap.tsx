@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import { useGetCountryDataQuery } from "../store/services/covidApi";
 
+// Define types for country data
 type CountryDataTypes = {
   country: string;
   countryInfo: { lat: number; long: number; _id: number };
@@ -11,18 +12,22 @@ type CountryDataTypes = {
   deaths: number;
 };
 
+// Create custom icon for marker
 const covidIcon = L.icon({
   iconUrl: "https://img.icons8.com/color/48/000000/coronavirus.png",
   iconSize: [35, 35],
 });
 
 function CovidMap() {
+
   const { data: countryData, isLoading } = useGetCountryDataQuery();
 
+    // If data is still loading, return a "Loading..." message
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
+    // If data has loaded, render the map
   return (
     <div className="w-auto h-fit">
       <MapContainer center={[10, -0.1]} zoom={2} scrollWheelZoom={false}>

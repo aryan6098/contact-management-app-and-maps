@@ -3,12 +3,12 @@ import LineChart from "./LineChart";
 import CovidMap from "./CovidMap";
 import Tab from "../components/Tab";
 
-interface Tab {
+interface TabType {
   label: string;
   content: React.ReactNode;
 }
 
-const tabs: Tab[] = [
+const tabs: TabType[] = [
   {
     label: "Line Chart",
     content: <LineChart />,
