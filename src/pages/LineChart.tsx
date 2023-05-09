@@ -13,6 +13,7 @@ import { Line } from "react-chartjs-2";
 import { ChartData, ChartOptions } from "chart.js/auto";
 import { useGetCovidDataQuery } from "../store/services/covidApi";
 
+// Registering necessary components for Chart.js
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -26,10 +27,12 @@ ChartJS.register(
 const LineChart = () => {
   const { data, isFetching } = useGetCovidDataQuery();
 
+  // Show loading message until the data is fetched
   if (isFetching) {
     return <p>Loading...</p>;
   }
 
+  // Define chart data
   const chartData: ChartData<"line", number[], unknown> = {
     labels: Object.keys(data.cases),
     datasets: [
@@ -57,6 +60,7 @@ const LineChart = () => {
     ],
   };
 
+  // Define chart options
   const options: ChartOptions<"line"> = {
     responsive: true,
     plugins: {
@@ -84,6 +88,7 @@ const LineChart = () => {
     },
   };
 
+  // Render the Line chart
   return (
     <div className="bg-white shadow-lg p-4 ">
       <div className="w-11/12 h-5/6">
